@@ -22,6 +22,13 @@ export default function MatchScreen() {
       roomId
     );
   };
+  
+  const skipChat = () => {
+  socket.emit(
+    "skipPartner",
+    roomId
+  );
+};
 
   return (
     <div className="min-h-screen bg-slate-950 text-white flex flex-col">
@@ -50,8 +57,17 @@ export default function MatchScreen() {
           onClick={leaveChat}
           className="bg-red-600 hover:bg-red-700 px-5 py-2 rounded-xl"
         >
+          Leave Chat
+        </button>
+        <button
+          onClick={skipChat}
+          className="bg-red-600 hover:bg-red-700 px-5 py-2 rounded-xl"
+        >
           Skip
         </button>
+        
+        
+        
       </div>
 
       {/* Chat */}

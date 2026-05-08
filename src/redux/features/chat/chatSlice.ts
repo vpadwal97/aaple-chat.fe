@@ -91,7 +91,7 @@ const chatSlice = createSlice({
       state.commonInterests =
         action.payload.commonInterests;
 
-      state.isSearching = false;
+    //   state.isSearching = false;
 
       state.messages = [];
     },
@@ -106,16 +106,15 @@ const chatSlice = createSlice({
     },
 
     resetChat: (state) => {
-      state.roomId = null;
+  state.roomId = null;
 
-      state.messages = [];
+  state.messages = [];
 
-      state.matchedUsers = [];
+  state.matchedUsers = [];
 
-      state.commonInterests = [];
-
-      state.isSearching = false;
-    },
+  state.commonInterests = [];
+},
+    
   },
 });
 
