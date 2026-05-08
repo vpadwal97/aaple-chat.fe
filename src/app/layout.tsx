@@ -4,7 +4,8 @@ import Providers from "./providers";
 
 export const metadata = {
   title: "Omegle Clone",
-  description: "Random chat with interest matching",
+  description:
+    "Random chat with interest matching",
 };
 
 export default function RootLayout({
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-slate-950 text-white">
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

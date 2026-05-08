@@ -1,6 +1,7 @@
 import { io, Socket } from "socket.io-client";
 
-const SOCKET_URL = "https://chat-backend-c5ve.onrender.com";
+const SOCKET_URL =
+  "http://localhost:10000";
 
 let socket: Socket;
 

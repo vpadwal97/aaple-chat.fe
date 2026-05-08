@@ -24,30 +24,46 @@ export const useSocket = () => {
     // ======================
     // ONLINE USERS
     // ======================
-    socket.on("onlineUsers", (users) => {
-      dispatch(setOnlineUsers(users));
-    });
+    socket.on(
+      "onlineUsers",
+      (users) => {
+        dispatch(
+          setOnlineUsers(users)
+        );
+      }
+    );
 
     // ======================
     // MATCHED
     // ======================
-    socket.on("matched", (data) => {
-      dispatch(setMatched(data));
-    });
+    socket.on(
+      "matched",
+      (data) => {
+        dispatch(setMatched(data));
+      }
+    );
 
     // ======================
     // MESSAGE
     // ======================
-    socket.on("randomMessage", (message) => {
-      dispatch(addMessage(message));
-    });
+    socket.on(
+      "randomMessage",
+      (message) => {
+        dispatch(
+          addMessage(message)
+        );
+      }
+    );
 
     // ======================
     // PARTNER LEFT
     // ======================
-    socket.on("partnerLeft", () => {
-      dispatch(resetChat());
-    });
+    socket.on(
+      "partnerLeft",
+      () => {
+        dispatch(resetChat());
+      }
+    );
 
     return () => {
       socket.off("onlineUsers");

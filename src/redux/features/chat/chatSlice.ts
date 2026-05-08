@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Message, MatchData } from "@/types/chat";
+import {
+  Message,
+  MatchData,
+} from "@/types/chat";
 
 interface ChatState {
   username: string;
@@ -48,36 +51,58 @@ const chatSlice = createSlice({
   initialState,
 
   reducers: {
-    setUsername: (state, action: PayloadAction<string>) => {
+    setUsername: (
+      state,
+      action: PayloadAction<string>
+    ) => {
       state.username = action.payload;
     },
 
-    setInterests: (state, action: PayloadAction<string[]>) => {
+    setInterests: (
+      state,
+      action: PayloadAction<string[]>
+    ) => {
       state.interests = action.payload;
     },
 
-    setOnlineUsers: (state, action) => {
+    setOnlineUsers: (
+      state,
+      action
+    ) => {
       state.onlineUsers = action.payload;
     },
 
-    setSearching: (state, action: PayloadAction<boolean>) => {
+    setSearching: (
+      state,
+      action: PayloadAction<boolean>
+    ) => {
       state.isSearching = action.payload;
     },
 
-    setMatched: (state, action: PayloadAction<MatchData>) => {
+    setMatched: (
+      state,
+      action: PayloadAction<MatchData>
+    ) => {
       state.roomId = action.payload.roomId;
 
-      state.matchedUsers = action.payload.users;
+      state.matchedUsers =
+        action.payload.users;
 
-      state.commonInterests = action.payload.commonInterests;
+      state.commonInterests =
+        action.payload.commonInterests;
 
       state.isSearching = false;
 
       state.messages = [];
     },
 
-    addMessage: (state, action: PayloadAction<Message>) => {
-      state.messages.push(action.payload);
+    addMessage: (
+      state,
+      action: PayloadAction<Message>
+    ) => {
+      state.messages.push(
+        action.payload
+      );
     },
 
     resetChat: (state) => {

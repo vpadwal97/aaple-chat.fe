@@ -9,12 +9,18 @@ import ChatWindow from "./ChatWindow";
 import socket from "@/lib/socket";
 
 export default function MatchScreen() {
-  const { roomId, commonInterests } = useSelector(
+  const {
+    roomId,
+    commonInterests,
+  } = useSelector(
     (state: RootState) => state.chat
   );
 
   const leaveChat = () => {
-    socket.emit("leaveRandom", roomId);
+    socket.emit(
+      "leaveRandom",
+      roomId
+    );
   };
 
   return (
@@ -22,17 +28,21 @@ export default function MatchScreen() {
       {/* Header */}
       <div className="border-b border-slate-800 p-4 flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold">Connected</h1>
+          <h1 className="text-xl font-bold">
+            Connected
+          </h1>
 
           <div className="flex gap-2 mt-2">
-            {commonInterests.map((interest) => (
-              <span
-                key={interest}
-                className="bg-slate-800 px-3 py-1 rounded-full text-sm"
-              >
-                #{interest}
-              </span>
-            ))}
+            {commonInterests.map(
+              (interest) => (
+                <span
+                  key={interest}
+                  className="bg-slate-800 px-3 py-1 rounded-full text-sm"
+                >
+                  #{interest}
+                </span>
+              )
+            )}
           </div>
         </div>
 

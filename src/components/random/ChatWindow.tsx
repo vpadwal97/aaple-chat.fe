@@ -9,9 +9,14 @@ import { RootState } from "@/redux/store";
 import socket from "@/lib/socket";
 
 export default function ChatWindow() {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] =
+    useState("");
 
-  const { messages, roomId, username } = useSelector(
+  const {
+    messages,
+    roomId,
+    username,
+  } = useSelector(
     (state: RootState) => state.chat
   );
 
@@ -31,19 +36,28 @@ export default function ChatWindow() {
       {/* Messages */}
       <div className="flex-1 overflow-y-auto space-y-3 mb-4">
         {messages.map((msg, index) => {
-          const isMe = msg.user === username;
+          const isMe =
+            msg.user === username;
 
           return (
             <div
               key={index}
-              className={`flex ${isMe ? "justify-end" : "justify-start"}`}
+              className={`flex ${
+                isMe
+                  ? "justify-end"
+                  : "justify-start"
+              }`}
             >
               <div
                 className={`max-w-md px-4 py-3 rounded-2xl ${
-                  isMe ? "bg-blue-600" : "bg-slate-800"
+                  isMe
+                    ? "bg-blue-600"
+                    : "bg-slate-800"
                 }`}
               >
-                <p className="text-sm text-slate-300 mb-1">{msg.user}</p>
+                <p className="text-sm text-slate-300 mb-1">
+                  {msg.user}
+                </p>
 
                 <p>{msg.message}</p>
               </div>
@@ -56,7 +70,9 @@ export default function ChatWindow() {
       <div className="flex gap-3">
         <input
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(e) =>
+            setMessage(e.target.value)
+          }
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               sendMessage();
