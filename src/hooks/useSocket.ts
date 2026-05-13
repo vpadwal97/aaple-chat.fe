@@ -7,6 +7,8 @@ import socket from "@/lib/socket";
 import { useDispatch } from "react-redux";
 
 import {
+  setTyping,
+  setOnlineCount,
   addMessage,
   setMatched,
   setOnlineUsers,
@@ -15,113 +17,87 @@ import {
 } from "@/redux/features/chat/chatSlice";
 
 export const useSocket = () => {
-  const dispatch =
-    useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // =====================
     // CONNECT
     // =====================
-    if (
-      !socket.connected
-    ) {
+    if (!socket.connected) {
       socket.connect();
     }
 
     // =====================
     // SEARCHING
     // =====================
-    socket.on(
-      "searching",
-      () => {
-        dispatch(
-          setSearching(
-            true
-          )
-        );
-      }
-    );
+    socket.on("searching", () => {
+      dispatch(setSearching(true));
+    });
 
     // =====================
     // ONLINE USERS
     // =====================
-    socket.on(
-      "onlineUsers",
-      (users) => {
-        dispatch(
-          setOnlineUsers(
-            users
-          )
-        );
-      }
-    );
+    socket.on("onlineUsers", (users) => {
+      // dispatch(setOnlineUsers(users));
+      dispatch(setOnlineUsers(users));
+
+      dispatch(setOnlineCount(Object.keys(users).length));
+    });
 
     // =====================
     // MATCHED
     // =====================
-    socket.on(
-      "matched",
-      (data) => {
-        dispatch(
-          setMatched(
-            data
-          )
-        );
-      }
-    );
+    socket.on("matched", (data) => {
+      dispatch(setMatched(data));
+    });
 
     // =====================
     // MESSAGE
     // =====================
-    socket.on(
-      "randomMessage",
-      (message) => {
-        dispatch(
-          addMessage(
-            message
-          )
-        );
-      }
-    );
+    socket.on("randomMessage", (message) => {
+      dispatch(addMessage(message));
+    });
 
     // =====================
     // PARTNER SKIPPED
     // =====================
-    socket.on(
-      "partnerSkipped",
-      () => {
-        dispatch(
-          resetChat()
-        );
+    socket.on("partnerSkipped", () => {
+      dispatch(resetChat());
 
-        dispatch(
-          setSearching(
-            true
-          )
-        );
-      }
-    );
+      dispatch(setSearching(true));
+    });
+
+    // =====================
+    // TYPING
+    // =====================
+    socket.on("typing", () => {
+      dispatch(setTyping(true));
+    });
+
+    socket.on("stopTyping", () => {
+      dispatch(setTyping(false));
+    });
+
+    socket.on("partnerDisconnected", () => {
+      dispatch(resetChat());
+
+      dispatch(setSearching(true));
+    });
 
     return () => {
-      socket.off(
-        "searching"
-      );
+      socket.off("typing");
 
-      socket.off(
-        "onlineUsers"
-      );
+      socket.off("stopTyping");
+      socket.off("searching");
 
-      socket.off(
-        "matched"
-      );
+      socket.off("onlineUsers");
 
-      socket.off(
-        "randomMessage"
-      );
+      socket.off("matched");
 
-      socket.off(
-        "partnerSkipped"
-      );
+      socket.off("randomMessage");
+
+      socket.off("partnerSkipped");
+      socket.off("partnerDisconnected");
     };
   }, [dispatch]);
 };

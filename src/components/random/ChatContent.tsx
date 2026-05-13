@@ -30,6 +30,8 @@ import MatchScreen from "@/components/random/MatchScreen";
 export default function ChatPage() {
   useSocket();
 
+  const { onlineCount } = useSelector((state: RootState) => state.chat);
+
   const dispatch = useDispatch();
 
   const router = useRouter();
@@ -152,6 +154,13 @@ export default function ChatPage() {
         <p className="text-slate-400 text-center md-max:mb-10 mb-4">
           Meet strangers with shared interests
         </p>
+
+        {/* Online Count */}
+        {/* <div className="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 px-5 py-3 rounded-full">
+          <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+
+          <span className="text-sm">{onlineCount} online</span>
+        </div> */}
 
         {/* USERNAME */}
         <div className="mb-6">
