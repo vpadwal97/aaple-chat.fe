@@ -27,20 +27,13 @@ export default function HomePage() {
 
   const dispatch = useDispatch();
 
-  const {
-    roomId,
-    isSearching,
-  } = useSelector(
-    (state: RootState) => state.chat
-  );
+  const { roomId, isSearching } = useSelector((state: RootState) => state.chat);
 
   const [name, setName] = useState("");
 
-  const [interestInput, setInterestInput] =
-    useState("");
+  const [interestInput, setInterestInput] = useState("");
 
-  const [interests, setLocalInterests] =
-    useState<string[]>([]);
+  const [interests, setLocalInterests] = useState<string[]>([]);
 
   // =========================
   // ADD INTEREST
@@ -48,10 +41,7 @@ export default function HomePage() {
   const addInterest = () => {
     if (!interestInput.trim()) return;
 
-    setLocalInterests((prev) => [
-      ...prev,
-      interestInput.trim(),
-    ]);
+    setLocalInterests((prev) => [...prev, interestInput.trim()]);
 
     setInterestInput("");
   };
@@ -97,26 +87,19 @@ export default function HomePage() {
     <main className="min-h-screen flex items-center justify-center bg-slate-950 text-white px-4">
       <div className="w-full max-w-xl bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-2xl">
         {/* Heading */}
-        <h1 className="text-4xl font-bold text-center mb-2">
-          Random Chat
-        </h1>
+        <h1 className="text-4xl font-bold text-center mb-2">Random Chat</h1>
 
         <p className="text-slate-400 text-center mb-8">
-          Talk with strangers based on shared
-          interests
+          Talk with strangers based on shared interests
         </p>
 
         {/* Username */}
         <div className="mb-5">
-          <label className="block mb-2 text-sm text-slate-300">
-            Username
-          </label>
+          <label className="block mb-2 text-sm text-slate-300">Username</label>
 
           <input
             value={name}
-            onChange={(e) =>
-              setName(e.target.value)
-            }
+            onChange={(e) => setName(e.target.value)}
             placeholder="Enter username"
             className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-blue-500"
           />
@@ -124,18 +107,12 @@ export default function HomePage() {
 
         {/* Interests */}
         <div className="mb-5">
-          <label className="block mb-2 text-sm text-slate-300">
-            Interests
-          </label>
+          <label className="block mb-2 text-sm text-slate-300">Interests</label>
 
           <div className="flex gap-2">
             <input
               value={interestInput}
-              onChange={(e) =>
-                setInterestInput(
-                  e.target.value
-                )
-              }
+              onChange={(e) => setInterestInput(e.target.value)}
               placeholder="anime"
               className="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-blue-500"
             />
