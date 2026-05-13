@@ -3,7 +3,7 @@ import "./globals.css";
 import Providers from "./providers";
 
 export const metadata = {
-  title: "Omegle Clone",
+  title: "Aaple chat",
   description:
     "Random chat with interest matching",
 };
