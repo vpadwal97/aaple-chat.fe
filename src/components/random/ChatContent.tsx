@@ -147,7 +147,7 @@ export default function ChatPage() {
 
   return (
     <main className="min-h-screen bg-slate-950 text-white flex items-center justify-center px-4">
-      <div className="w-full max-w-xl bg-slate-900 border border-slate-800 rounded-3xl md-max:p-8 px-4 py-8 shadow-2xl">
+      <div className="w-full max-w-xl bg-slate-900 border border-slate-800 rounded-3xl md:px-8 px-4 py-8 shadow-2xl">
         {/* TITLE */}
         <h1 className="text-5xl font-bold text-center mb-3">Aaple Chat</h1>
 

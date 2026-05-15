@@ -1,12 +1,11 @@
 import "./globals.css";
 
-import Providers from "./providers";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "Aaple chat",
-  description:
-    "Random chat with interest matching",
-};
+import { defaultMetadata } from "@/seo/metadata";
+
+export const metadata: Metadata =
+  defaultMetadata;
 
 export default function RootLayout({
   children,
@@ -15,11 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-slate-950 text-white">
-        <Providers>
-          {children}
-        </Providers>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
